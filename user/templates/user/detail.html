@@ -1,0 +1,19 @@
+{% extends "user/base.html" %}
+{% block content %}
+<div class="grid-container">
+    
+    {% for item in items %}
+        <div class="item {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
+            <div class="image-wrapper image-wrapper-{{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
+                <div class="tooltip">
+                    <img class="image image-{{ item.type }}" src="{{ item.image }}">
+                    <span class="tooltiptext">Item Info</span>
+                </div>    
+                
+            </div>
+            
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock content %}

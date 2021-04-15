@@ -1,0 +1,17 @@
+{% extends 'user/base.html' %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+        <div class="custom-select" style="witdh: 200px;">
+            <select name="character" id="id_character" required=''>
+                {% for name in names %}
+
+                    <option value="{{ name}}">{{ name }}</option>
+                
+                {% endfor %}
+            </select>
+            <input type="submit" value="OK"/>
+        </div>
+    </form>
+{% endblock content %}
+    
