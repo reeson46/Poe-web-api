@@ -36,7 +36,7 @@ def get_user(request):
 
         results = r.json()
 
-        #import ipdb; ipdb.set_trace()
+        
 
         # list comprehation
         # items = [{'name': item['typeLine'], 'image': item['icon']} for item in results['items'] 
@@ -48,20 +48,34 @@ def get_user(request):
         for item in results['items']:
             if item['inventoryId'] != 'MainInventory' and item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
 
+                
                 if item['inventoryId'] == 'Flask':
                     flask_id = str(item['x']+1)
                 else:
                     flask_id = ''
 
+                implicitMods = item.get('implicitMods')
+                explicitMods = item.get('explicitMods')
+                craftedMods = item.get('craftedMods')
+                enchantMods = item.get('enchantMods')
+                
+                
+
                 items.append({
                         'name': item['typeLine'], 
                         'image': item['icon'], 
                         'type': item['inventoryId'],
-                        'flask': flask_id
+                        'flask': flask_id,
+                        'implicitMods': implicitMods,
+                        'explicitMods': explicitMods,
+                        'craftedMods': craftedMods,
+                        'enchantMods': enchantMods
                     })
 
-        pprint(items)   
+        #import ipdb; ipdb.set_trace()
         
+        #pprint(items)
+
         context = {
             'title': 'Character equipement',
             'items': items,

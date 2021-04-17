@@ -7,11 +7,40 @@
             <div class="image-wrapper image-wrapper-{{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
                 <div class="tooltip">
                     <img class="image image-{{ item.type }}" src="{{ item.image }}">
-                    <span class="tooltiptext">Item Info</span>
-                </div>    
-                
-            </div>
-            
+                    <span class="tooltiptext">
+
+                        <p class="item-name">{{ item.name }}</p>   
+
+                        <!-- Enchant mods-->
+                        {% if item.enchantMods %}
+                            {% for enchant in item.enchantMods  %}
+                                <p class="enchant"> {{ enchant }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Implicit mods-->
+                        {% if item.implicitMods %}
+                            {% for implicit in item.implicitMods  %}
+                                <p class="implicit"> {{ implicit }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Explicit mods-->
+                        {% if item.explicitMods %}
+                            {% for explicit in item.explicitMods  %}
+                                <p class="explicit"> {{ explicit }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Crafted mods-->
+                        {% if item.craftedMods %}
+                            {% for crafted in item.craftedMods  %}
+                                <p class="crafted"> {{ crafted }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </span>
+                </div>      
+            </div>        
         </div>
     {% endfor %}
 
