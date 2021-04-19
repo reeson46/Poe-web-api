@@ -1,48 +1,34 @@
 {% extends "user/base.html" %}
 {% block content %}
-<div class="grid-container">
-    
+<div class="mainInventory">
+
+    <!--Only for displaying Item slots-->
+    <div class="itemSlot itemHelm"></div>
+    <div class="itemSlot itemWeapon"></div>
+    <div class="itemSlot itemOffhand"></div>   
+    <div class="itemSlot itemBodyArmour"></div>
+    <div class="itemSlot itemRing"></div>
+    <div class="itemSlot itemRing2"></div>
+    <div class="itemSlot itemAmulet"></div>
+    <div class="itemSlot itemGloves"></div>
+    <div class="itemSlot itemBoots"></div>
+    <div class="itemSlot itemBelt"></div>
+    <div class="itemSlot itemTrinket"></div>
+    <div class="itemSlot itemFlask1"></div>
+    <div class="itemSlot itemFlask2"></div>
+    <div class="itemSlot itemFlask3"></div>
+    <div class="itemSlot itemFlask4"></div>
+    <div class="itemSlot itemFlask5"></div> 
+
     {% for item in items %}
-        <div class="item {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
-            <div class="image-wrapper image-wrapper-{{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
-                <div class="tooltip">
-                    <img class="image image-{{ item.type }}" src="{{ item.image }}">
-                    <span class="tooltiptext">
-
-                        <p class="item-name">{{ item.name }}</p>   
-
-                        <!-- Enchant mods-->
-                        {% if item.enchantMods %}
-                            {% for enchant in item.enchantMods  %}
-                                <p class="enchant"> {{ enchant }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Implicit mods-->
-                        {% if item.implicitMods %}
-                            {% for implicit in item.implicitMods  %}
-                                <p class="implicit"> {{ implicit }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Explicit mods-->
-                        {% if item.explicitMods %}
-                            {% for explicit in item.explicitMods  %}
-                                <p class="explicit"> {{ explicit }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Crafted mods-->
-                        {% if item.craftedMods %}
-                            {% for crafted in item.craftedMods  %}
-                                <p class="crafted"> {{ crafted }}</p>
-                            {% endfor %}
-                        {% endif %}
-                    </span>
-                </div>      
-            </div>        
+        <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
+            <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}{% if item.height == 3 %}placement{% endif %}{% endif %}">
+                <div class="icon">
+                    <img src="{{ item.icon }}" alt="">
+                </div>
+            </div>
         </div>
     {% endfor %}
-
+    
 </div>
 {% endblock content %}

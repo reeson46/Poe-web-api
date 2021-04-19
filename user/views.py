@@ -58,23 +58,25 @@ def get_user(request):
                 explicitMods = item.get('explicitMods')
                 craftedMods = item.get('craftedMods')
                 enchantMods = item.get('enchantMods')
+                height = item.get('h')
                 
                 
 
                 items.append({
                         'name': item['typeLine'], 
-                        'image': item['icon'], 
+                        'icon': item['icon'], 
                         'type': item['inventoryId'],
                         'flask': flask_id,
                         'implicitMods': implicitMods,
                         'explicitMods': explicitMods,
                         'craftedMods': craftedMods,
-                        'enchantMods': enchantMods
+                        'enchantMods': enchantMods,
+                        'height': height
                     })
 
         #import ipdb; ipdb.set_trace()
         
-        #pprint(items)
+        pprint(items)
 
         context = {
             'title': 'Character equipement',

@@ -1,0 +1,48 @@
+<!-- Enchant mods-->
+{% if item.enchantMods %}
+    {% for enchant in item.enchantMods  %}
+        <p class="enchant"> {{ enchant }}</p>
+    {% endfor %}
+{% endif %}
+
+<!-- Implicit mods-->
+{% if item.implicitMods %}
+    {% for implicit in item.implicitMods  %}
+        <p class="implicit"> {{ implicit }}</p>
+    {% endfor %}
+{% endif %}
+
+<!-- Explicit mods-->
+{% if item.explicitMods %}
+    {% for explicit in item.explicitMods  %}
+        <p class="explicit"> {{ explicit }}</p>
+    {% endfor %}
+{% endif %}
+
+<!-- Crafted mods-->
+{% if item.craftedMods %}
+    {% for crafted in item.craftedMods  %}
+        <p class="crafted"> {{ crafted }}</p>
+    {% endfor %}
+{% endif %}
+
+
+Big Bow
+    "w": 2,
+    "h": 4,
+    doens't need top: 23.73225px;
+
+Quiver
+    "w": 2,
+    "h": 3,
+    need top: 23.73225px;
+
+Wand
+    "w": 1,
+    "h": 3,
+    need top: 23.73225px;
+
+Big Shield
+    "w": 2,
+    "h": 3,
+    need top: 23.73225px;
