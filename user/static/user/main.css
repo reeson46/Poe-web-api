@@ -9,7 +9,6 @@
     position: absolute;
 }
 
-
 /* Items position */
 .Helm{
     left: 252.06px;
@@ -126,7 +125,6 @@
 .iconContainer{
     position: relative;
     text-align: center;
-    justify-content: center;
 }
 
 .placement{
@@ -138,6 +136,7 @@
     position: absolute;
     background-color: #A1A5A6;
     border: #333 3px solid;
+    border-radius: 6px;
     margin-left: -3px;
     margin-top: -3px;
 }
@@ -252,4 +251,78 @@
     top: 418.51px;
     height: 95.929px;
     width: 47.4645px;
+}
+
+/* Tooltip for mods */
+.tooltip{
+    display: inline-block;
+}
+
+.tooltip .tooltipText{
+    visibility: hidden;
+    min-width: 300px;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+    left: 110%;
+    top: 0;
+}
+
+.tooltip:hover .tooltipText {
+    visibility: visible;
+}
+
+/* Tooltip mods text color/font */
+.itemName{
+    font-size: 20px;
+}
+
+.itemName .textMargin0{
+    margin: 0;
+}
+
+/* .regionColor0{
+    background-color: ;
+} */
+
+.regionColor1{
+    background-color: rgb(58, 60, 63) ;
+}
+
+.regionColor2{
+    background-color: rgb(128, 127, 81) ;
+}
+
+.regionColor3{
+    background-color: rgb(88, 48, 48) ;
+}
+
+.itemName .rarity0{
+    color: rgba(255, 255, 255, 0.685);
+}
+
+.itemName .rarity1{
+    color: rgba(190, 189, 255, 0.911);
+}
+
+.itemName .rarity2{
+    color: rgb(255, 251, 27);
+}
+
+.itemName .rarity3{
+    color: rgba(255, 96, 5, 0.822);
+}
+
+.enchantMod,
+.craftedMod{
+    color: lightskyblue;
+}
+
+.affixMod{
+    color: rgb(65, 65, 243);
 }

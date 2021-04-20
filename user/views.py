@@ -58,12 +58,14 @@ def get_user(request):
                 explicitMods = item.get('explicitMods')
                 craftedMods = item.get('craftedMods')
                 enchantMods = item.get('enchantMods')
+                rarity = item.get('frameType')
+                name = item.get('name')
                 height = item.get('h')
                 
                 
 
                 items.append({
-                        'name': item['typeLine'], 
+                        'typeLine': item['typeLine'], 
                         'icon': item['icon'], 
                         'type': item['inventoryId'],
                         'flask': flask_id,
@@ -71,6 +73,8 @@ def get_user(request):
                         'explicitMods': explicitMods,
                         'craftedMods': craftedMods,
                         'enchantMods': enchantMods,
+                        'name': name,
+                        'rarity': rarity,
                         'height': height
                     })
 

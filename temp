@@ -26,23 +26,30 @@
     {% endfor %}
 {% endif %}
 
+/* Tooltip text */
+.itemContainer .tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    left: 100%;
+    top: 0;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
-Big Bow
-    "w": 2,
-    "h": 4,
-    doens't need top: 23.73225px;
-
-Quiver
-    "w": 2,
-    "h": 3,
-    need top: 23.73225px;
-
-Wand
-    "w": 1,
-    "h": 3,
-    need top: 23.73225px;
-
-Big Shield
-    "w": 2,
-    "h": 3,
-    need top: 23.73225px;
+  
+/* Show the tooltip text when you mouse over the tooltip container */
+.itemContainer:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

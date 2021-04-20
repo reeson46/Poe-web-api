@@ -3,30 +3,73 @@
 <div class="mainInventory">
 
     <!--Only for displaying Item slots-->
-    <div class="itemSlot itemHelm"></div>
-    <div class="itemSlot itemWeapon"></div>
-    <div class="itemSlot itemOffhand"></div>   
-    <div class="itemSlot itemBodyArmour"></div>
-    <div class="itemSlot itemRing"></div>
-    <div class="itemSlot itemRing2"></div>
-    <div class="itemSlot itemAmulet"></div>
-    <div class="itemSlot itemGloves"></div>
-    <div class="itemSlot itemBoots"></div>
-    <div class="itemSlot itemBelt"></div>
-    <div class="itemSlot itemTrinket"></div>
-    <div class="itemSlot itemFlask1"></div>
-    <div class="itemSlot itemFlask2"></div>
-    <div class="itemSlot itemFlask3"></div>
-    <div class="itemSlot itemFlask4"></div>
-    <div class="itemSlot itemFlask5"></div> 
+    <div class="itemSlotContainer">
+        <div class="itemSlot itemHelm"></div>
+        <div class="itemSlot itemWeapon"></div>
+        <div class="itemSlot itemOffhand"></div>   
+        <div class="itemSlot itemBodyArmour"></div>
+        <div class="itemSlot itemRing"></div>
+        <div class="itemSlot itemRing2"></div>
+        <div class="itemSlot itemAmulet"></div>
+        <div class="itemSlot itemGloves"></div>
+        <div class="itemSlot itemBoots"></div>
+        <div class="itemSlot itemBelt"></div>
+        <div class="itemSlot itemTrinket"></div>
+        <div class="itemSlot itemFlask1"></div>
+        <div class="itemSlot itemFlask2"></div>
+        <div class="itemSlot itemFlask3"></div>
+        <div class="itemSlot itemFlask4"></div>
+        <div class="itemSlot itemFlask5"></div>
+    </div>
+     
 
     {% for item in items %}
-        <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %}">
-            <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}{% if item.height == 3 %}placement{% endif %}{% endif %}">
+        <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %} tooltip">
+            <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}placement{% endif %}">
                 <div class="icon">
                     <img src="{{ item.icon }}" alt="">
                 </div>
             </div>
+            <span class="tooltipText">
+
+                <div class="itemName regionColor{{ item.rarity }}">
+                    <!--Item name-->
+                    {% if item.name %}
+                        <p class="rarity{{ item.rarity }} textMargin0">{{ item.name }}</p>  
+                    {% endif %}
+
+                    <!--Item typeline-->
+                    <p class="rarity{{ item.rarity }} textMargin0">{{ item.typeLine }}</p>
+                </div>
+
+                <!-- Enchant mods-->
+                {% if item.enchantMods %}
+                    {% for enchant in item.enchantMods  %}
+                        <p class="enchantMod"> {{ enchant }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Implicit mods-->
+                {% if item.implicitMods %}
+                    {% for implicit in item.implicitMods  %}
+                        <p class="affixMod"> {{ implicit }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Explicit mods-->
+                {% if item.explicitMods %}
+                    {% for explicit in item.explicitMods  %}
+                        <p class="affixMod"> {{ explicit }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Crafted mods-->
+                {% if item.craftedMods %}
+                    {% for crafted in item.craftedMods  %}
+                        <p class="craftedMod"> {{ crafted }}</p>
+                    {% endfor %}
+                {% endif %}
+            </span>
         </div>
     {% endfor %}
     
