@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/utilities.css' %}">
     
     <title>POE - {{ title }}</title>
 </head>
 <h2>POE - {{ title }}</h2>
-<body>
+<body id="bg" style="background-image: url('{% static "user/images/background.jpg" %}');">
     {% block content %}{% endblock content %}
 
 </body>

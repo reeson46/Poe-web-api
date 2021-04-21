@@ -1,0 +1,286 @@
+:root{
+    --borderSize: 2px;
+    --itemOffsetY: -20px;
+}
+
+#bg{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.equippedItemsContainer{
+    position: relative;
+    top: 10%;
+    width: 600px;
+    height: 480px;
+    border: #1c1b1f 3px solid;
+    border-radius: 6px;
+    background-color: #5b696d7a;
+}
+
+.equippedItemsContainer .title{
+    text-align: center;
+}
+
+.equippedItemsContainer .title h2{
+    position: relative;
+    top: -20px;
+    background-color: #79d0ba4d;
+    border-bottom: #1c1b1f 3px solid; ;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 3px 0px;
+}
+
+
+/* Item slot/container position/color */
+.itemContainer,
+.itemSlot{
+    position: absolute;
+    border: rgb(24, 24, 24) 3px solid;
+    background-color: #0f100e69;
+    border-radius: 6px;
+}
+
+.itemContainer{
+    background-color: rgb(30 32 68 / 64%);
+}
+
+
+.Helm,
+.itemHelm{
+    width: 93.929px;
+    height: 95.929px;
+    left: 50%;
+    margin-left: -46.9645px;
+    top: calc(5.5% - var(--itemOffsetY));
+}
+
+.Weapon,
+.itemWeapon{
+    width: 93.929px;
+    height: 189.858px;  
+    left: 12%;
+    top: calc(8% - var(--itemOffsetY));
+}
+
+.Offhand,
+.itemOffhand{
+    width: 93.929px;
+    height: 189.858px;  
+    left: 72%;
+    top: calc(8% - var(--itemOffsetY));
+}
+
+.BodyArmour,
+.itemBodyArmour{
+    width: 93.929px;
+    height: 142.3935px;
+    left: 50%;
+    margin-left: -46.9645px;
+    top: calc(28% - var(--itemOffsetY));
+}
+
+.Ring,
+.itemRing{
+    width: 47.4645px;
+    height: 47.4645px;
+    left: 31%;
+    top: calc(37.7% - var(--itemOffsetY));
+}
+
+.Ring2,
+.itemRing2{
+    width: 47.4645px;
+    height: 47.4645px;
+    left: 61%;
+    top: calc(37.7% - var(--itemOffsetY));
+}
+
+.Amulet,
+.itemAmulet{
+    width: 47.4645px;
+    height: 47.4645px;
+    left: 61%;
+    top: calc(25.4% - var(--itemOffsetY));
+}
+
+.Gloves,
+.itemGloves{
+    width: 93.929px;
+    height: 95.929px;
+    left: 31%;
+    margin-left: -46.9645px;
+    top: calc(49.9% - var(--itemOffsetY));
+}
+
+.Boots,
+.itemBoots{
+    width: 93.929px;
+    height: 95.929px;
+    left: 61%;
+    top: calc(49.9% - var(--itemOffsetY));
+}
+
+.Belt,
+.itemBelt{
+    width: 93.929px;
+    height: 47.4645px;
+    left: 50%;
+    margin-left: -46.9645px;
+    top: calc(60% - var(--itemOffsetY));
+}
+
+.Trinket,
+.itemTrinket{
+    width: 47.4645px;
+    height: 47.4645px;
+    left: 12%;
+    bottom: calc(12% + var(--itemOffsetY));
+}
+
+.Flask1,
+.itemFlask1{
+    width: 47.4645px;
+    height: 95.929px;
+    left: 26%;
+    bottom: calc(6% + var(--itemOffsetY));
+}
+
+.Flask2,
+.itemFlask2{
+    width: 47.4645px;
+    height: 95.929px;
+    left: 36%;
+    bottom: calc(6% + var(--itemOffsetY));
+}
+
+.Flask3,
+.itemFlask3{
+    width: 47.4645px;
+    height: 95.929px;
+    left: 50%;
+    margin-left: -23.73225px;
+    bottom: calc(6% + var(--itemOffsetY));
+}
+
+.Flask4,
+.itemFlask4{
+    width: 47.4645px;
+    height: 95.929px;
+    left: 56%;
+    bottom: calc(6% + var(--itemOffsetY));
+}
+
+.Flask5,
+.itemFlask5{
+    width: 47.4645px;
+    height: 95.929px;
+    left: 66%;
+    bottom: calc(6% + var(--itemOffsetY));
+}
+
+.iconContainer{
+    position: relative;
+    text-align: center;
+}
+
+.placement{
+    top: 23.73225px;
+}
+
+
+/* Tooltip for mods */
+.tooltip{
+    display: inline;   
+}
+
+.tooltip .tooltipText{
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+
+    position: absolute;
+    z-index: 1;
+    left: calc(100% + 10px);
+    top: -2px;
+}
+
+.tooltip:hover .tooltipText {
+    visibility: visible;
+}
+
+.tooltip:hover{
+    border: rgba(178, 191, 240, 0.753) 3px solid;
+    border-radius: 6px;
+}
+
+/* Mods text color/font */
+.itemName{
+    white-space: nowrap;
+    padding: 0px 10px;
+}
+
+.itemMod{
+    white-space: nowrap;
+    padding: 0px 10px;
+}
+
+.textMod{
+    
+}
+
+.regionColor0{
+    background-image: linear-gradient(rgb(66 66 70),rgb(105 105 119));
+    border: rgb(165 165 173) var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.regionColor1{
+    background-image: linear-gradient(rgb(34 34 45),rgb(65 65 87));
+    border: #484867 var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.regionColor2{
+    background-image: linear-gradient(rgb(97, 73, 28),rgb(161 123 54));
+    border: #a0a559 var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.regionColor3{
+    background-image: linear-gradient(rgb(78, 0, 0), rgb(119 33 33));
+    border: #804b28 var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.itemName .rarity0{
+    color: rgb(190 189 198);
+}
+
+.itemName .rarity1{
+    color: rgba(190, 189, 255, 0.911);
+}
+
+.itemName .rarity2{
+    color: rgb(255, 251, 27);
+}
+
+.itemName .rarity3{
+    color: rgba(255, 96, 5, 0.822);
+}
+
+.enchantMod,
+.craftedMod{
+    color: lightskyblue;
+}
+
+.affixMod{
+    color: rgb(123 123 255);
+}

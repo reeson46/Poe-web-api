@@ -1,0 +1,21 @@
+/* Margin */
+.m-0{
+    margin: 0;
+}
+
+/* Text size */
+.sm{
+    font-size: 1rem;
+}
+
+.md{
+    font-size: 1.5rem; 
+}
+
+.lg{
+    font-size: 2rem;
+}
+
+.xl{
+    font-size: 2.5rem;
+}
