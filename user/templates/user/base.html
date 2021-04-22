@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'user/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'user/css/utilities.css' %}">
     
@@ -15,6 +16,26 @@
 <h2>POE - {{ title }}</h2>
 <body id="bg" style="background-image: url('{% static "user/images/background.jpg" %}');">
     {% block content %}{% endblock content %}
+
+    <script>
+        $(function() {
+            $('.characterWindow').click(function() { 
+                var value = $(this).attr('value');
+                var input = $("<input>").attr("type", "hidden").attr("name", "character").val(value);
+                $('#charForm').append($(input));
+                $('#charForm').submit();
+            });
+        });
+
+        function viewStashTab(stashId){
+            var i;
+            var x = document.getElementsByClassName("stashTab");
+            for (i = 0; i < x.length; i++){
+                x[i].style.display = "none";
+            }
+            document.getElementById(stashId).style.display = "block";
+        }
+    </script>
 
 </body>
 </html>

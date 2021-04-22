@@ -1,55 +1,25 @@
-<!-- Enchant mods-->
-{% if item.enchantMods %}
-    {% for enchant in item.enchantMods  %}
-        <p class="enchant"> {{ enchant }}</p>
-    {% endfor %}
-{% endif %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{ form_characters }}
+    <div class="custom-select" style="witdh: 200px;">
+        <select name="character" id="id_character" required='' onChange="form.submit();">
+            {% for character in characters %}
 
-<!-- Implicit mods-->
-{% if item.implicitMods %}
-    {% for implicit in item.implicitMods  %}
-        <p class="implicit"> {{ implicit }}</p>
-    {% endfor %}
-{% endif %}
+                <option value="{{ character }}">{{ character }}</option>
+            
+            {% endfor %}
+        </select>
+        <input type="submit" value="OK"/>
+    </div>
+</form>
 
-<!-- Explicit mods-->
-{% if item.explicitMods %}
-    {% for explicit in item.explicitMods  %}
-        <p class="explicit"> {{ explicit }}</p>
-    {% endfor %}
-{% endif %}
+<form id="charForm" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <div class="charactersContainer">
+            {% for character in characters %}
 
-<!-- Crafted mods-->
-{% if item.craftedMods %}
-    {% for crafted in item.craftedMods  %}
-        <p class="crafted"> {{ crafted }}</p>
-    {% endfor %}
-{% endif %}
-
-/* Tooltip text */
-.itemContainer .tooltiptext{
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-  
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    left: 100%;
-    top: 0;
-  
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-  
-/* Show the tooltip text when you mouse over the tooltip container */
-.itemContainer:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
+                <div class="characterWindow" value="{{ character }}">{{ character }}</div>
+            
+            {% endfor %}
+        </div>
+</form>

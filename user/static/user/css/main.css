@@ -8,9 +8,37 @@
     background-attachment: fixed;
 }
 
+.mainLayout{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr;
+    /* grid-template-rows: 50px 1fr; */
+    gap: 20px;
+
+}
+
+/* CHARACTERS */
+.charactersContainer{
+    /* position: relative; */
+}
+
+.characterWindow{
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: rgb(61 94 124 /64%);
+    border: rgb(98, 151, 185) 2px solid;
+    gap: 10px;
+}
+
+.characterWindow:hover{
+    border: rgb(255, 255, 255) 2px solid;
+}
+
+/* EQUIPEMENT */
 .equippedItemsContainer{
     position: relative;
-    top: 10%;
+    top: 0%;
     width: 600px;
     height: 480px;
     border: #1c1b1f 3px solid;
@@ -189,6 +217,10 @@
     top: 23.73225px;
 }
 
+.placement2{
+    top: 47.4645px;
+}
+
 
 /* Tooltip for mods */
 .tooltip{
@@ -283,4 +315,10 @@
 
 .affixMod{
     color: rgb(123 123 255);
+}
+
+/* STASH TABS */
+
+.testcontainer{
+    background-color: white;
 }

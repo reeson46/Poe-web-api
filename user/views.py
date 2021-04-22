@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from .forms import SelectCharacter
 from pprint import pprint
 import requests
 import json
@@ -21,22 +22,24 @@ def get_user(request):
 
         names = [character['name'] for character in results]
 
+        form = SelectCharacter(names)
+
         context = {
-            'names': names,
+            'characters': names,
+            'form': form,
             'title': 'Select character',
         }
 
-        return render(request, 'user/user.html', context)
+        return render(request, 'user/detail.html', context)
 
     elif request.method == 'POST':
 
+        
         url = f"https://www.pathofexile.com/character-window/get-items?accountName=R33son&character={request.POST['character']}"
 
         r = requests.get(url, headers=headers, cookies=cookie)
 
         results = r.json()
-
-        
 
         # list comprehation
         # items = [{'name': item['typeLine'], 'image': item['icon']} for item in results['items'] 
@@ -61,9 +64,7 @@ def get_user(request):
                 rarity = item.get('frameType')
                 name = item.get('name')
                 height = item.get('h')
-                
-                
-
+            
                 items.append({
                         'typeLine': item['typeLine'], 
                         'icon': item['icon'], 
@@ -78,14 +79,9 @@ def get_user(request):
                         'height': height
                     })
 
-        #import ipdb; ipdb.set_trace()
-        
-        pprint(items)
-
         context = {
             'title': 'Character equipement',
             'items': items,
-
-
         }
+
         return render(request, 'user/detail.html', context)

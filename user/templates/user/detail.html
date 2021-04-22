@@ -1,6 +1,18 @@
 {% extends "user/base.html" %}
 {% block content %}
 <div class="mainLayout">
+
+    <form id="charForm" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <div class="charactersContainer">
+            {% for value, text in form.character.field.choices %}
+
+                <div class="characterWindow" value="{{ value }}">{{ text }}</div>
+            
+            {% endfor %}
+        </div>
+    </form>
+
     <div class="equippedItemsContainer">
         <div class="title">
             <h2>EQUIPEMENT</h2>
@@ -26,7 +38,7 @@
         </div>
         {% for item in items %}
             <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %} tooltip">
-                <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}placement{% endif %}">
+                <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}{% if item.height == 3 %}placement{% endif %}{% if item.height == 2 %}placement2{% endif %}{% endif %}">
                     <div class="icon">
                         <img src="{{ item.icon }}" alt="">
                     </div>
@@ -75,7 +87,28 @@
                 </span>
             </div>
         {% endfor %} 
-        
+    </div>
+    <div class="stashtabContainer">
+        <div class="w3-bar w3-black">
+            <button class="testbtn" onclick="viewStashTab('Stash1')">Stash1</button>
+            <button class="testbtn" onclick="viewStashTab('Stash2')">Stash2</button>
+            <button class="testbtn" onclick="viewStashTab('Stash3')">Stash3</button>
+        </div>
+
+        <div id="Stash1" class="testcontainer stashTab">
+            <h2>Stash1</h2>
+            <p>Stash1 content.</p>
+        </div>
+
+        <div id="Stash2" class="testcontainer stashTab" style="display:none">
+            <h2>Stash2</h2>
+            <p>Stash2 content.</p> 
+        </div>  
+
+        <div id="Stash3" class="testcontainer stashTab" style="display:none">
+            <h2>Stash3</h2>
+            <p>Stash3 content.</p>
+        </div>
     </div>
 </div>
 {% endblock content %}
