@@ -5,11 +5,7 @@
     <form id="charForm" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
         <div class="charactersContainer">
-            {% for value, text in form.character.field.choices %}
-
-                <div class="characterWindow" value="{{ value }}">{{ text }}</div>
-            
-            {% endfor %}
+            <div class="characterWindow" value="GovejaJuha">GovejaJuha</div>
         </div>
     </form>
 

@@ -14,12 +14,49 @@
 </form>
 
 <form id="charForm" action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %} 
-        <div class="charactersContainer">
-            {% for character in characters %}
+    {% csrf_token %} 
+    <div class="charactersContainer">
+        {% for character in characters %}
 
-                <div class="characterWindow" value="{{ character }}">{{ character }}</div>
-            
-            {% endfor %}
-        </div>
+            <div class="characterWindow" value="{{ character }}">{{ character }}</div>
+        
+        {% endfor %}
+    </div>
 </form>
+
+<script>
+    $(function() {
+        $('.characterWindow').click(function() { 
+            var value = $(this).attr('value');
+            var input = $("<input>").attr("type", "hidden").attr("name", "character").val(value);
+            $('#charForm').append($(input));
+            $('#charForm').submit();
+        });
+    });
+
+    function viewStashTab(stashId){
+        var i;
+        var x = document.getElementsByClassName("stashTab");
+        for (i = 0; i < x.length; i++){
+            x[i].style.display = "none";
+        }
+        document.getElementById(stashId).style.display = "block";
+    }
+</script>
+
+<form id="charForm" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <div class="charactersContainer">
+        {% for value, text in form.character.field.choices %}
+
+            <div class="characterWindow" value="{{ value }}">{{ text }}</div>
+        
+        {% endfor %}
+    </div>
+</form>
+
+{% for name in characters_names %}
+
+    <div class="characterWindow" value="{{ name }}">{{ name }}</div>
+            
+{% endfor %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import SelectCharacter
+from django.views.generic import View
 from pprint import pprint
 import requests
 import json
@@ -10,23 +11,20 @@ def get_user(request):
 
     headers = {'User-Agent': 'Mozilla/5.0 '}
 
-    cookie = {'POESESSID': '16418e854515def66e5d3a14c74bfc6a'}
+    cookies = {'POESESSID': '16418e854515def66e5d3a14c74bfc6a'}
 
     if request.method == 'GET':
 
         url = 'https://www.pathofexile.com/character-window/get-characters?accountName=R33son'
 
-        r = requests.get(url, headers=headers, cookies=cookie)
+        r = requests.get(url, headers=headers, cookies=cookies)
 
         results = r.json()
 
         names = [character['name'] for character in results]
 
-        form = SelectCharacter(names)
-
         context = {
-            'characters': names,
-            'form': form,
+            'characters': characters,
             'title': 'Select character',
         }
 
@@ -37,7 +35,7 @@ def get_user(request):
         
         url = f"https://www.pathofexile.com/character-window/get-items?accountName=R33son&character={request.POST['character']}"
 
-        r = requests.get(url, headers=headers, cookies=cookie)
+        r = requests.get(url, headers=headers, cookies=cookies)
 
         results = r.json()
 
@@ -85,3 +83,11 @@ def get_user(request):
         }
 
         return render(request, 'user/detail.html', context)
+
+
+def character(request):
+
+    
+
+    return render(request, 'user/detail.html')
+    
