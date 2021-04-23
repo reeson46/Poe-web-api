@@ -2,12 +2,15 @@
 {% block content %}
 <div class="mainLayout">
 
-    <form id="charForm" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
         <div class="charactersContainer">
-            <div class="characterWindow" value="GovejaJuha">GovejaJuha</div>
+       {% for value, text in form.character.field.choices %}
+
+                <div class="characterWindow" value="{{ value }}">{{ text }}</div>
+            
+       {% endfor %}
         </div>
-    </form>
+
 
     <div class="equippedItemsContainer">
         <div class="title">

@@ -7,7 +7,7 @@ import requests
 import json
 
 
-def get_user(request):
+def characterList(request):
 
     headers = {'User-Agent': 'Mozilla/5.0 '}
 
@@ -23,10 +23,14 @@ def get_user(request):
 
         names = [character['name'] for character in results]
 
+        form = SelectCharacter(names)
+        print(names)
         context = {
-            'characters': characters,
+            'characters': names,
+            'form': form,
             'title': 'Select character',
         }
+
 
         return render(request, 'user/detail.html', context)
 
@@ -85,9 +89,17 @@ def get_user(request):
         return render(request, 'user/detail.html', context)
 
 
-def character(request):
+def characterDetail(request):
 
-    
+    if request.method == "GET":
 
-    return render(request, 'user/detail.html')
-    
+
+        if "character_name" in request.GET:
+            
+            print(request.GET["character_name"])
+            # Pridobi vse character is poe api, extractaj vn dict od izbranega characterjaž
+            # Returnaj dict v JsonRespnse
+            return JsonResponse({"message": "OK"})
+
+        else:
+            return JsonResponse({"message": "Character does not exists"})
