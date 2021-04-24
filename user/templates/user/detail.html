@@ -2,17 +2,17 @@
 {% block content %}
 <div class="mainLayout">
 
-        {% csrf_token %} 
-        <div class="charactersContainer">
-       {% for value, text in form.character.field.choices %}
+    {% csrf_token %} 
+    <div class="charactersContainer">
+        {% for name in character_names %}
 
-                <div class="characterWindow" value="{{ value }}">{{ text }}</div>
-            
-       {% endfor %}
-        </div>
+            <div class="characterWindow" value="{{ name }}">{{ name }}</div>
+        
+        {% endfor %}
+    </div>
 
 
-    <div class="equippedItemsContainer">
+    <div class="charatcerItemsContainer">
         <div class="title">
             <h2>EQUIPEMENT</h2>
         </div>
@@ -35,58 +35,12 @@
             <div class="itemSlot itemFlask4"></div>
             <div class="itemSlot itemFlask5"></div>
         </div>
-        {% for item in items %}
-            <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %} tooltip">
-                <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}{% if item.height == 3 %}placement{% endif %}{% if item.height == 2 %}placement2{% endif %}{% endif %}">
-                    <div class="icon">
-                        <img src="{{ item.icon }}" alt="">
-                    </div>
-                </div>
-                <span class="tooltipText">
 
-                    <div class="itemName regionColor{{ item.rarity }} md">
-                        <!--Item name-->
-                        {% if item.name %}
-                            <p class="rarity{{ item.rarity }} m-0">{{ item.name }}</p>  
-                        {% endif %}
-
-                        <!--Item typeline-->
-                        <p class="rarity{{ item.rarity }} m-0">{{ item.typeLine }}</p>
-                    </div>
-
-                    <div class="itemMod">
-                        <!-- Enchant mods-->
-                        {% if item.enchantMods %}
-                            {% for enchant in item.enchantMods  %}
-                                <p class="enchantMod textMod"> {{ enchant }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Implicit mods-->
-                        {% if item.implicitMods %}
-                            {% for implicit in item.implicitMods  %}
-                                <p class="affixMod textMod"> {{ implicit }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Explicit mods-->
-                        {% if item.explicitMods %}
-                            {% for explicit in item.explicitMods  %}
-                                <p class="affixMod textMod"> {{ explicit }}</p>
-                            {% endfor %}
-                        {% endif %}
-
-                        <!-- Crafted mods-->
-                        {% if item.craftedMods %}
-                            {% for crafted in item.craftedMods  %}
-                                <p class="craftedMod textMod"> {{ crafted }}</p>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </span>
-            </div>
-        {% endfor %} 
+        <div class="equippedItemsContainer" id="equippedItemsContainer"></div>  
     </div>
+
+    
+
     <div class="stashtabContainer">
         <div class="w3-bar w3-black">
             <button class="testbtn" onclick="viewStashTab('Stash1')">Stash1</button>

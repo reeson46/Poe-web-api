@@ -36,7 +36,7 @@
 }
 
 /* EQUIPEMENT */
-.equippedItemsContainer{
+.charatcerItemsContainer{
     position: relative;
     top: 0%;
     width: 600px;
@@ -46,11 +46,11 @@
     background-color: #5b696d7a;
 }
 
-.equippedItemsContainer .title{
+.charatcerItemsContainer .title{
     text-align: center;
 }
 
-.equippedItemsContainer .title h2{
+.charatcerItemsContainer .title h2{
     position: relative;
     top: -20px;
     background-color: #79d0ba4d;

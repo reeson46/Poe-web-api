@@ -6,12 +6,12 @@ from pprint import pprint
 import requests
 import json
 
+headers = {'User-Agent': 'Mozilla/5.0 '}
+
+cookies = {'POESESSID': '16418e854515def66e5d3a14c74bfc6a'}
 
 def characterList(request):
 
-    headers = {'User-Agent': 'Mozilla/5.0 '}
-
-    cookies = {'POESESSID': '16418e854515def66e5d3a14c74bfc6a'}
 
     if request.method == 'GET':
 
@@ -21,13 +21,10 @@ def characterList(request):
 
         results = r.json()
 
-        names = [character['name'] for character in results]
+        character_names = [character['name'] for character in results]
 
-        form = SelectCharacter(names)
-        print(names)
         context = {
-            'characters': names,
-            'form': form,
+            'character_names': character_names,
             'title': 'Select character',
         }
 
@@ -91,15 +88,49 @@ def characterList(request):
 
 def characterDetail(request):
 
-    if request.method == "GET":
+    if request.is_ajax and request.method == "GET":
 
 
         if "character_name" in request.GET:
-            
-            print(request.GET["character_name"])
-            # Pridobi vse character is poe api, extractaj vn dict od izbranega characterjaž
-            # Returnaj dict v JsonRespnse
-            return JsonResponse({"message": "OK"})
 
+            url = f"https://www.pathofexile.com/character-window/get-items?accountName=R33son&character={request.GET['character_name']}"
+
+            r = requests.get(url, headers=headers, cookies=cookies)
+
+            results = r.json()
+
+            items = []
+            for item in results['items']:
+                if item['inventoryId'] != 'MainInventory' and item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
+
+                    
+                    if item['inventoryId'] == 'Flask':
+                        flask_id = str(item['x']+1)
+                    else:
+                        flask_id = ''
+
+                    implicitMods = item.get('implicitMods')
+                    explicitMods = item.get('explicitMods')
+                    craftedMods = item.get('craftedMods')
+                    enchantMods = item.get('enchantMods')
+                    rarity = item.get('frameType')
+                    name = item.get('name')
+                    height = item.get('h')
+                
+                    items.append({
+                            'typeLine': item['typeLine'], 
+                            'icon': item['icon'], 
+                            'type': item['inventoryId'],
+                            'flask': flask_id,
+                            'implicitMods': implicitMods,
+                            'explicitMods': explicitMods,
+                            'craftedMods': craftedMods,
+                            'enchantMods': enchantMods,
+                            'name': name,
+                            'rarity': rarity,
+                            'height': height
+                        })
+
+            return JsonResponse({"character_items": items} , status=200)
         else:
-            return JsonResponse({"message": "Character does not exists"})
+            return JsonResponse({"message": "Character does not exists"}, status=400)

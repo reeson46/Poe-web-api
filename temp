@@ -60,3 +60,69 @@
     <div class="characterWindow" value="{{ name }}">{{ name }}</div>
             
 {% endfor %}
+
+{% for item in items %}
+    <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %} tooltip">
+        <div class="iconContainer {% if item.type == 'Weapon' or item.type == 'Offhand' %}{% if item.height == 3 %}placement{% endif %}{% if item.height == 2 %}placement2{% endif %}{% endif %}">
+            <div class="icon">
+                <img src="{{ item.icon }}" alt="">
+            </div>
+        </div>
+        <span class="tooltipText">
+
+            <div class="itemName regionColor{{ item.rarity }} md">
+                <!--Item name-->
+                {% if item.name %}
+                    <p class="rarity{{ item.rarity }} m-0">{{ item.name }}</p>  
+                {% endif %}
+
+                <!--Item typeline-->
+                <p class="rarity{{ item.rarity }} m-0">{{ item.typeLine }}</p>
+            </div>
+
+            <div class="itemMod">
+                <!-- Enchant mods-->
+                {% if item.enchantMods %}
+                    {% for enchant in item.enchantMods  %}
+                        <p class="enchantMod textMod"> {{ enchant }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Implicit mods-->
+                {% if item.implicitMods %}
+                    {% for implicit in item.implicitMods  %}
+                        <p class="affixMod textMod"> {{ implicit }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Explicit mods-->
+                {% if item.explicitMods %}
+                    {% for explicit in item.explicitMods  %}
+                        <p class="affixMod textMod"> {{ explicit }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Crafted mods-->
+                {% if item.craftedMods %}
+                    {% for crafted in item.craftedMods  %}
+                        <p class="craftedMod textMod"> {{ crafted }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </span>
+    </div>
+{% endfor %}
+
+.append($("<div/>", {class: "itemContainer " + character_items[item].type +flask + " tooltip",})
+              .append($("<div/>", { class: "iconContainer " + placement })
+                .append($("<div/>", { class: "icon" })
+                  .append($("<img>", { src: character_items[item].icon })
+                  )
+                )
+              )
+              .append($("<span/>", { class: "tooltipText" })
+                .append($("<div/>", {class:"itemName regionColor" + character_items[item].rarity + " md",})
+                  .append($("<p/>", {class:"rarity" + character_items[item].rarity + " m-0", text: character_items[item].name}))
+                  .append($("<p/>", { class:"rarity" + character_items[item].rarity + " m-0", text: character_items[item].typeLine}))
+                )
+              )
