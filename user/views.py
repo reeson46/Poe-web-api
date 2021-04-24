@@ -109,10 +109,12 @@ def characterDetail(request):
                     else:
                         flask_id = ''
 
+                    fracturedMods = item.get('fracturedMods')
                     implicitMods = item.get('implicitMods')
                     explicitMods = item.get('explicitMods')
                     craftedMods = item.get('craftedMods')
                     enchantMods = item.get('enchantMods')
+                    corrupted = item.get('corrupted')
                     rarity = item.get('frameType')
                     name = item.get('name')
                     height = item.get('h')
@@ -122,10 +124,12 @@ def characterDetail(request):
                             'icon': item['icon'], 
                             'type': item['inventoryId'],
                             'flask': flask_id,
+                            'fracturedMods': fracturedMods,
                             'implicitMods': implicitMods,
                             'explicitMods': explicitMods,
                             'craftedMods': craftedMods,
                             'enchantMods': enchantMods,
+                            'corrupted': corrupted,
                             'name': name,
                             'rarity': rarity,
                             'height': height

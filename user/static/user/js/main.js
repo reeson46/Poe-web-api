@@ -52,15 +52,55 @@ $(document).ready(function () {
             }
           }
 
+          fracturedMods= "";
+          if(item.fracturedMods){
+            item.fracturedMods.forEach((fractured) => {
+              fracturedMods += '<p class="fracturedMod textMod">' + fractured + '</p>';
+            });
+          }
+
+          implicitMods = "";
+          if(item.implicitMods){
+            item.implicitMods.forEach((implicit) => {
+              implicitMods += '<p class="affixMod textMod">' + implicit + '</p>';
+            }); 
+          }
+
+          explicitMods = "";
+          if(item.explicitMods){
+            item.explicitMods.forEach((explicit) => {
+              explicitMods += '<p class="affixMod textMod">' + explicit + '</p>';
+            }); 
+          }
+
+          craftedMods = "";
+          if(item.craftedMods){
+            item.craftedMods.forEach((crafted) => {
+              craftedMods += '<p class="craftedMod textMod">' + crafted + '</p>';
+            }); 
+          }
+
+          corrupted = "";
+          if(item.corrupted){
+            corrupted = '<p class="corrupted textMod">Corrupted</p>';
+          }
 
           $('#equippedItemsContainer').append($("<div/>", {class: "itemContainer " + item.type + flask + " tooltip"})
                                         .append($("<div/>", { class: "iconContainer " + placement })
                                           .append($("<div/>", { class: "icon" })
                                             .append($("<img>", { src: item.icon }))))
                                             
-                                        .append($("<span/>", { class: "tooltipText" })
-                                          .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",})
-                                            .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name}))))
+                                        .append($("<span/>", { class: "tooltipText" }) // Tooltip span
+                                          .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
+                                            .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
+                                            .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
+                                          .append($("<div/>", {class: "itemMod"})
+                                            .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
+                                            .append(fracturedMods)
+                                            .append(implicitMods)
+                                            .append(explicitMods)
+                                            .append(craftedMods)
+                                            .append(corrupted))) 
                                             
                                             
                                             
