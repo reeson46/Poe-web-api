@@ -1,6 +1,7 @@
 :root{
     --borderSize: 2px;
     --itemOffsetY: -20px;
+    --borderColorBlack: #1c1b1f;
 }
 
 #bg{
@@ -10,54 +11,39 @@
 
 .mainLayout{
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-columns: 0.3fr 1fr 1fr;
     /* grid-template-rows: 50px 1fr; */
     gap: 20px;
 
 }
 
-/* CHARACTERS */
-.charactersContainer{
-    /* position: relative; */
-}
-
-.characterWindow{
-    text-align: center;
-    width: 200px;
-    height: 50px;
-    color: white;
-    background-color: rgb(61 94 124 /64%);
-    border: rgb(98, 151, 185) 2px solid;
-    gap: 10px;
-}
-
-.characterWindow:hover{
-    border: rgb(255, 255, 255) 2px solid;
-}
-
-/* EQUIPEMENT */
-.charatcerItemsContainer{
-    position: relative;
-    top: 0%;
-    width: 600px;
-    height: 480px;
-    border: #1c1b1f 3px solid;
+/* CONTENT WINDOW COLOR/BORDER */
+.window{
+    display: grid;
+    grid-template-rows: 30px auto;
+    border: var(--borderColorBlack) 3px solid;
     border-radius: 6px;
-    background-color: #5b696d7a;
 }
 
-.charatcerItemsContainer .title{
+.title{
     text-align: center;
-}
-
-.charatcerItemsContainer .title h2{
-    position: relative;
-    top: -20px;
-    background-color: #79d0ba4d;
+    background-color: #48a78f7d;
     border-bottom: #1c1b1f 3px solid; ;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    padding: 3px 0px;
+}
+
+.content{
+    background-color: #5b696d7a;
+}
+
+
+/* EQUIPEMENT */
+.charatcerItemsContainer{
+    
+    position: relative;
+    width: 600px;
+    height: 480px;
 }
 
 
@@ -321,4 +307,247 @@
 
 .testcontainer{
     background-color: white;
+}
+
+/* CHARACTER WINDOWS */
+.charactersContainer{
+    
+    
+}
+
+.charactersContainer .scrollbar{
+    max-height: 990px;
+    overflow-y: scroll;
+    padding: 10px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+ 
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 18px;
+}
+::-webkit-scrollbar-thumb {
+    height: 6px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.characterWindow{
+    display: grid;
+    grid-template-columns: 80px 207px;
+    grid-template-rows: auto auto auto ;
+    width: 287px;
+    height: 80px;
+    color: white;
+    background-color: rgb(61 94 124 /64%);
+    border: rgb(98, 151, 185) 2px solid;
+    transition: transform .1s;
+}
+
+.characterWindow:hover{
+    transform: scale(1.05);
+    border: rgb(255, 255, 255) 2px solid;
+    cursor: pointer;
+}
+
+
+.characterWindow .icon{
+    grid-column: 1;
+    grid-row: 1 / span 3;
+}
+
+.characterWindow .icon.Marauder {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -80px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Juggernaut {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -400px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Berserker {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -480px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Chieftain {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -160px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Shadow {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -160px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Assassin {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: 0px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Saboteur {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -80px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Trickster {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -240px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Witch {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -330px -340px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Occultist {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: 0px -580px;
+    width: 80px;
+    height: 80px;
+}
+
+.characterWindow .icon.Elementalist {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -560px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Necromancer {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -320px;
+    width: 80px;
+    height: 80px;
+}
+
+.characterWindow .icon.Templar {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -320px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Inquisitor {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -160px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Hierophant {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -440px -420px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Guardian {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -220px -180px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Duelist {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -480px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Slayer {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px 0px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Gladiator {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -80px -500px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Champion {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -240px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Ranger {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -320px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Deadeye {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -400px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Raider {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -480px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Pathfinder {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -240px -580px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Scion {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -658px -400px;
+    width: 80px;
+    height: 80px; 
+}
+
+.characterWindow .icon.Ascendant {
+    background: url('https://web.poecdn.com/image/gen/inventory-sprite.png?1619050656400') no-repeat;
+    background-position: -330px -260px;
+    width: 80px;
+    height: 80px; 
 }

@@ -3,40 +3,47 @@
 <div class="mainLayout">
 
     {% csrf_token %} 
-    <div class="charactersContainer">
-        {% for name in character_names %}
-
-            <div class="characterWindow" value="{{ name }}">{{ name }}</div>
-        
-        {% endfor %}
+    <div class="charactersContainer window">
+        <h2 class="title m-0">CHARACTERS</h2>
+        <div class="content">
+            <div class="scrollbar">
+                {% for character in characters %}
+                    <div class="characterWindow" value="{{ character.name }}">
+                        <div class="icon {{ character.class }}"></div>
+                        <div class="name pl-10 pt-5">{{ character.name }} </div>
+                        <div class="level-class pl-10">Level {{ character.level }} {{ character.class }}</div>
+                        <div class="league pl-10">{{ character.league }} League</div>  
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 
-    <div class="charatcerItemsContainer">
-        <div class="title">
-            <h2>EQUIPEMENT</h2>
+    <div class="charatcerItemsContainer window">
+        <h2 class="title m-0">EQUIPEMENT</h2>
+        <div class="content">
+            <!--Only for displaying Item slots-->
+            <div class="itemSlotContainer">
+                <div class="itemSlot itemHelm"></div>
+                <div class="itemSlot itemWeapon"></div>
+                <div class="itemSlot itemOffhand"></div>   
+                <div class="itemSlot itemBodyArmour"></div>
+                <div class="itemSlot itemRing"></div>
+                <div class="itemSlot itemRing2"></div>
+                <div class="itemSlot itemAmulet"></div>
+                <div class="itemSlot itemGloves"></div>
+                <div class="itemSlot itemBoots"></div>
+                <div class="itemSlot itemBelt"></div>
+                <div class="itemSlot itemTrinket"></div>
+                <div class="itemSlot itemFlask1"></div>
+                <div class="itemSlot itemFlask2"></div>
+                <div class="itemSlot itemFlask3"></div>
+                <div class="itemSlot itemFlask4"></div>
+                <div class="itemSlot itemFlask5"></div>
+            </div>
+            <div class="equippedItemsContainer" id="equippedItemsContainer"></div>  
         </div>
-        <!--Only for displaying Item slots-->
-        <div class="itemSlotContainer">
-            <div class="itemSlot itemHelm"></div>
-            <div class="itemSlot itemWeapon"></div>
-            <div class="itemSlot itemOffhand"></div>   
-            <div class="itemSlot itemBodyArmour"></div>
-            <div class="itemSlot itemRing"></div>
-            <div class="itemSlot itemRing2"></div>
-            <div class="itemSlot itemAmulet"></div>
-            <div class="itemSlot itemGloves"></div>
-            <div class="itemSlot itemBoots"></div>
-            <div class="itemSlot itemBelt"></div>
-            <div class="itemSlot itemTrinket"></div>
-            <div class="itemSlot itemFlask1"></div>
-            <div class="itemSlot itemFlask2"></div>
-            <div class="itemSlot itemFlask3"></div>
-            <div class="itemSlot itemFlask4"></div>
-            <div class="itemSlot itemFlask5"></div>
-        </div>
-
-        <div class="equippedItemsContainer" id="equippedItemsContainer"></div>  
     </div>
 
     

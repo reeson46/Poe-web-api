@@ -101,11 +101,6 @@ $(document).ready(function () {
                                             .append(explicitMods)
                                             .append(craftedMods)
                                             .append(corrupted))) 
-                                            
-                                            
-                                            
-                                            
-                                            
                                             )
                                       
                                       

@@ -2,6 +2,17 @@
 .m-0{
     margin: 0;
 }
+.mt-5{
+    margin-top: 5px;
+}
+/* Padding */
+.pl-10{
+    padding-left: 10px;
+}
+
+.pt-5{
+    padding-top: 5px;
+}
 
 /* Text size */
 .sm{
@@ -18,4 +29,13 @@
 
 .xl{
     font-size: 2.5rem;
+}
+
+/* Text allign */
+.ac{
+    text-align: center;
+}
+
+.al{
+    text-align: left;
 }

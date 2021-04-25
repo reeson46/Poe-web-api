@@ -21,10 +21,10 @@ def characterList(request):
 
         results = r.json()
 
-        character_names = [character['name'] for character in results]
-
+        characters = [{'name': character['name'], 'class': character['class'], 'level': character['level'], 'league': character['league']} for character in results]
+       
         context = {
-            'character_names': character_names,
+            'characters': characters,
             'title': 'Select character',
         }
 
