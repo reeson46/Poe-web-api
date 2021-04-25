@@ -15,6 +15,11 @@ function getCookie(name) {
 }
 
 $(document).ready(function () {
+
+  $('characterWindow').click(function() {
+    $('characterWindow').toggleClass('scale');
+  })
+
   $(".characterWindow").click(function () {
     // console.log($(this).attr("value"));
     // console.log(getCookie("csrftoken"));

@@ -15,76 +15,26 @@ def characterList(request):
 
     if request.method == 'GET':
 
-        url = 'https://www.pathofexile.com/character-window/get-characters?accountName=R33son'
+        characters_url = 'https://www.pathofexile.com/character-window/get-characters?accountName=R33son'
+        stashTabs_url = 'https://www.pathofexile.com/character-window/get-stash-items?league=Standard&realm=pc&accountName=R33son&tabs=1'
 
-        r = requests.get(url, headers=headers, cookies=cookies)
+        r_characters = requests.get(characters_url, headers=headers, cookies=cookies)
+        r_stashTabs = requests.get(stashTabs_url, headers=headers, cookies=cookies)
 
-        results = r.json()
+        results_characters = r_characters.json()
+        results_stashTabs = r_stashTabs.json()
+        
+        characters = [{'name': character['name'], 'class': character['class'], 'level': character['level'], 'league': character['league']} for character in results_characters]
 
-        characters = [{'name': character['name'], 'class': character['class'], 'level': character['level'], 'league': character['league']} for character in results]
-       
+        stashTabs = [{'name': stashTab['n'], 'color': stashTab['colour']} for stashTab in results_stashTabs['tabs']]
+        
         context = {
             'characters': characters,
+            'stashTabs': stashTabs,
             'title': 'Select character',
         }
 
-
         return render(request, 'user/detail.html', context)
-
-    elif request.method == 'POST':
-
-        
-        url = f"https://www.pathofexile.com/character-window/get-items?accountName=R33son&character={request.POST['character']}"
-
-        r = requests.get(url, headers=headers, cookies=cookies)
-
-        results = r.json()
-
-        # list comprehation
-        # items = [{'name': item['typeLine'], 'image': item['icon']} for item in results['items'] 
-        #     if item['inventoryId'] != 'MainInventory' and
-        #     item['inventoryId'] != 'Offhand2' and
-        #     item['inventoryId'] != 'Weapon2']
-        
-        items = []
-        for item in results['items']:
-            if item['inventoryId'] != 'MainInventory' and item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
-
-                
-                if item['inventoryId'] == 'Flask':
-                    flask_id = str(item['x']+1)
-                else:
-                    flask_id = ''
-
-                implicitMods = item.get('implicitMods')
-                explicitMods = item.get('explicitMods')
-                craftedMods = item.get('craftedMods')
-                enchantMods = item.get('enchantMods')
-                rarity = item.get('frameType')
-                name = item.get('name')
-                height = item.get('h')
-            
-                items.append({
-                        'typeLine': item['typeLine'], 
-                        'icon': item['icon'], 
-                        'type': item['inventoryId'],
-                        'flask': flask_id,
-                        'implicitMods': implicitMods,
-                        'explicitMods': explicitMods,
-                        'craftedMods': craftedMods,
-                        'enchantMods': enchantMods,
-                        'name': name,
-                        'rarity': rarity,
-                        'height': height
-                    })
-
-        context = {
-            'title': 'Character equipement',
-            'items': items,
-        }
-
-        return render(request, 'user/detail.html', context)
-
 
 def characterDetail(request):
 

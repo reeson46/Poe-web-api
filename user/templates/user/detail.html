@@ -1,9 +1,10 @@
 {% extends "user/base.html" %}
 {% block content %}
+{% load mathfilters %}
 <div class="mainLayout">
 
     {% csrf_token %} 
-    <div class="charactersContainer window">
+    <div class="charactersContainer window-bg">
         <h2 class="title m-0">CHARACTERS</h2>
         <div class="content">
             <div class="scrollbar">
@@ -20,7 +21,7 @@
     </div>
 
 
-    <div class="charatcerItemsContainer window">
+    <div class="charatcerItemsContainer window-bg">
         <h2 class="title m-0">EQUIPEMENT</h2>
         <div class="content">
             <!--Only for displaying Item slots-->
@@ -48,27 +49,17 @@
 
     
 
-    <div class="stashtabContainer">
-        <div class="w3-bar w3-black">
-            <button class="testbtn" onclick="viewStashTab('Stash1')">Stash1</button>
-            <button class="testbtn" onclick="viewStashTab('Stash2')">Stash2</button>
-            <button class="testbtn" onclick="viewStashTab('Stash3')">Stash3</button>
-        </div>
-
-        <div id="Stash1" class="testcontainer stashTab">
-            <h2>Stash1</h2>
-            <p>Stash1 content.</p>
-        </div>
-
-        <div id="Stash2" class="testcontainer stashTab" style="display:none">
-            <h2>Stash2</h2>
-            <p>Stash2 content.</p> 
-        </div>  
-
-        <div id="Stash3" class="testcontainer stashTab" style="display:none">
-            <h2>Stash3</h2>
-            <p>Stash3 content.</p>
-        </div>
+    <div class="stashtabContainer window-bg">
+        <h2 class="title m-0">STASH TABS</h2>
+        <div class="content">
+            <div class="scrollbar">
+                {% for stashTab in stashTabs  %}
+                    <button class="stashbtn" style="background-color: rgb({{ stashTab.color.r }} {{ stashTab.color.g }} {{ stashTab.color.b }} /70%); border: rgb({{ stashTab.color.r|div:0.8 }}, {{ stashTab.color.g|div:0.8 }}, {{ stashTab.color.b|div:0.8 }}) 2px solid;" onclick="viewStashTab('{{stashTab.name}}')">{{stashTab.name}}</button>
+                    <div id="{{ stashTab.name }}" class="testcontainer stashTab" style="display:none"></div>  
+                {% endfor %}
+            </div>
+            <div class="detail"></div>
+        </div>         
     </div>
 </div>
 {% endblock content %}
