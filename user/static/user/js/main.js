@@ -16,29 +16,27 @@ function getCookie(name) {
 
 $(document).ready(function () {
 
-  $('characterWindow').click(function() {
-    $('characterWindow').toggleClass('scale');
-  })
+  $('.characterWindow').click(function () {
 
-  $(".characterWindow").click(function () {
-    // console.log($(this).attr("value"));
-    // console.log(getCookie("csrftoken"));
+    $('.characterWindow').removeClass('selectedCharacter'); // Remove 'color' CSS Class from all windows
+    
+    $(this).addClass('selectedCharacter');
 
     $.ajax({
-      type: "GET",
-      url: "api/",
+      type: 'GET',
+      url: 'api/character_detail/',
       headers: {
-        csrfmiddlewaretoken: getCookie("csrftoken"),
+        csrfmiddlewaretoken: getCookie('csrftoken'),
       },
 
       data: {
-        character_name: $(this).attr("value"),
+        character_name: $(this).attr('value'),
       },
 
       success: function (response) {
-        var character_items = response["character_items"];
+        var character_items = response['character_items'];
 
-        $("#equippedItemsContainer").empty();
+        $('#equippedItemsContainer').empty();
 
         character_items.forEach((item) => {
 
@@ -111,15 +109,47 @@ $(document).ready(function () {
                                       
         });
 
-        // Tu pol naprej updejtaš html ...
       },
 
       error: function (response) {
         // alert the error if any error occured
       },
     });
+  }); 
+
+  $('.stashbtn').click(function () {
+    
+    $.ajax({
+      type: 'GET',
+      url: 'api/stashtab/',
+      headers: {
+        csrfmiddlewaretoken: getCookie('csrftoken'),
+      },
+
+      data: {
+        stashtab_index: $(this).attr('value')
+      },
+
+      success: function (response){
+        console.log(response['stash_items']);
+        var stash_items = response['stash_items'];
+        
+        stash_items.forEach((item) => {
+
+          $('#stashContent').append($('<div/>', {class: 'item'})
+                              .append($('<div/>', {class:'icon'})
+                                .append($('img', {src: item.icon})))
+                              .append($('<div/>', {class: 'name'})
+                                .append($('<h2/>', {text: item.name})))
+                              .append($('<div/>', {class: 'pn-link'}).append($('<a/>'))))
+        });
+      },
+
+      error: function (response){
+
+      },
+
+    });
   });
 });
-{
-  /* <div class="itemContainer {{ item.type }}{% if item.flask %}{{item.flask}}{% endif %} tooltip"></div> */
-}
+

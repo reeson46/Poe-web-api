@@ -53,11 +53,6 @@
     border-top-right-radius: 3px;
 }
 
-.content{
-    background-color: #5b696d7a;
-}
-
-
 /* EQUIPEMENT */
 .charatcerItemsContainer{
     
@@ -77,7 +72,7 @@
 }
 
 .itemContainer{
-    background-color: rgb(30 32 68 / 53%);
+    background-color: rgb(30 32 68 / 40%);
 }
 
 
@@ -328,6 +323,13 @@
     position: relative;
     width: 1000px;
     height: 800px;
+    grid-template-rows: 30px;
+}
+
+.stashtabContainer .inner{
+    display: grid;
+    grid-template-rows: 75px auto;
+    gap: 20px;
 }
 
 .stashtabContainer .scrollbar{
@@ -335,25 +337,13 @@
     overflow-y: hidden;
     white-space: nowrap;
     position: relative;
-    width: 930px;
+    width: calc(100% - 80px);
     left: 50%;
-    margin-left: -470px;
-    top: 1%;
+    top: 20%;
+    margin-left: calc(-50% + 37px);
+    background-color: #b6b59a4d;
     border: black 3px solid;
     border-radius: 6px;
-    
-}
-
-.stashtabContainer .detail{
-    position: relative;
-    border: black 3px solid;
-    border-radius: 6px;
-    width: 930px;
-    height: 648px;
-    left: 50%;
-    margin-left: -470px;
-    top: 50%;
-    margin-top: -364px;
 }
 
 .stashbtn{
@@ -368,6 +358,51 @@
 .stashbtn:hover{
     transform:translateY(3px);
     cursor: pointer;
+}
+
+.stashtabContainer .stashTabDetail{
+    position: relative;
+    border: black 3px solid;
+    border-radius: 6px;
+    height: calc(100% - 52px);
+    width: calc(100% - 80px);
+    left: 50%;
+    top: 2%;
+    margin-left: calc(-50% + 37px);
+    background-color: #b6b59a4d;
+    display: grid;
+    grid-template-rows: 30px auto;
+    
+}
+
+.stashTabDetail .tags{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    border-bottom: black 3px solid;
+}
+
+.tags > div > h2{
+    margin: 0;
+    padding: 0 5px;
+}
+
+.tags .name,
+.tags .quantity{
+    border-left: black 3px solid;
+}
+
+.stashContent .item{
+    display: grid;
+    grid-template-columns: 20% 55% 5% 20%;
+}
+
+.poeNinjaBtn{
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+
 }
 
 /* CHARACTER WINDOWS */
@@ -396,8 +431,8 @@
     width: 280px;
     height: 80px;
     color: white;
-    background-color: rgb(61 94 124 /64%);
-    border: rgb(98, 151, 185) 2px solid;
+    background-color: rgb(35 43 50 / 64%);
+    border: rgb(147 176 193) 2px solid;
     transition: transform .1s;
     position: relative;
     left: 50%;
@@ -413,8 +448,8 @@
     cursor: pointer;
 }
 
-.scale{
-    transform: scale(0.95);
+.selectedCharacter{
+    background-color: rgba(77, 109, 136, 0.64);
 }
 
 .characterWindow .icon{

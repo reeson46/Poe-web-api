@@ -1,0 +1,10 @@
+frameType 0 = normal, incubators, scarabs, helmet enchants,
+frameType 1 = magic
+frameType 2 = rare, base types, beasts
+frameType 3 = uniques, beasts
+frameType 4 = skill gems, 
+frameType 5 = currency, fossils, resonators, oils, essences
+frameType 6 = divination cards, 
+frameType 7 = 
+frameType 8 = prophecies
+frameType 9 = relics

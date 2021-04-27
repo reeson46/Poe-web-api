@@ -6,7 +6,7 @@
     {% csrf_token %} 
     <div class="charactersContainer window-bg">
         <h2 class="title m-0">CHARACTERS</h2>
-        <div class="content">
+        <div class="ic">
             <div class="scrollbar">
                 {% for character in characters %}
                     <div class="characterWindow" value="{{ character.name }}">
@@ -23,7 +23,7 @@
 
     <div class="charatcerItemsContainer window-bg">
         <h2 class="title m-0">EQUIPEMENT</h2>
-        <div class="content">
+        <div class="ic">
             <!--Only for displaying Item slots-->
             <div class="itemSlotContainer">
                 <div class="itemSlot itemHelm"></div>
@@ -51,15 +51,47 @@
 
     <div class="stashtabContainer window-bg">
         <h2 class="title m-0">STASH TABS</h2>
-        <div class="content">
+        <div class="inner ic">
             <div class="scrollbar">
                 {% for stashTab in stashTabs  %}
-                    <button class="stashbtn" style="background-color: rgb({{ stashTab.color.r }} {{ stashTab.color.g }} {{ stashTab.color.b }} /70%); border: rgb({{ stashTab.color.r|div:0.8 }}, {{ stashTab.color.g|div:0.8 }}, {{ stashTab.color.b|div:0.8 }}) 2px solid;" onclick="viewStashTab('{{stashTab.name}}')">{{stashTab.name}}</button>
+                    <button class="stashbtn" value="{{ stashTab.index }}" style="background-color: rgb({{ stashTab.color.r }} {{ stashTab.color.g }} {{ stashTab.color.b }} /40%); border: rgb({{ stashTab.color.r|div:0.8 }}, {{ stashTab.color.g|div:0.8 }}, {{ stashTab.color.b|div:0.8 }}) 2px solid;">{{stashTab.name}}</button>
                     <div id="{{ stashTab.name }}" class="testcontainer stashTab" style="display:none"></div>  
                 {% endfor %}
             </div>
-            <div class="detail"></div>
-        </div>         
+            <div class="stashTabDetail">
+                <div class="tags">
+                    <div class="icon">
+                        <h2>Icon</h3>
+                    </div>
+                    <div class="name">
+                        <h2>Name</h2>
+                    </div>
+                    <div class="quantity">
+                        <h2>Quantity</h2>
+                    </div>
+                </div>
+                <div class="stashContent" id="stashContent">
+
+                    <div class="item">
+
+                        <div class="icon">
+                            <img src="" alt="">
+                        </div>
+
+                        <div class="name">
+                            <h2></h2>
+                        </div>
+
+                        <div class="pn-link">
+                            <a href="https://poe.ninja/"><button class="poeNinjaBtn">PN</button></a>
+                        </div>
+
+                        <div class="quantity">Quantity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
     </div>
 </div>
 {% endblock content %}

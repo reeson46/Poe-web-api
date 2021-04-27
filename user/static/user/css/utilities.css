@@ -39,3 +39,8 @@
 .al{
     text-align: left;
 }
+
+/* Color */
+.ic{
+    background-color: #5b696d7a;
+}

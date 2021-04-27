@@ -10,8 +10,7 @@ headers = {'User-Agent': 'Mozilla/5.0 '}
 
 cookies = {'POESESSID': '16418e854515def66e5d3a14c74bfc6a'}
 
-def characterList(request):
-
+def characterListAndTabs(request):
 
     if request.method == 'GET':
 
@@ -26,7 +25,7 @@ def characterList(request):
         
         characters = [{'name': character['name'], 'class': character['class'], 'level': character['level'], 'league': character['league']} for character in results_characters]
 
-        stashTabs = [{'name': stashTab['n'], 'color': stashTab['colour']} for stashTab in results_stashTabs['tabs']]
+        stashTabs = [{'name': stashTab['n'], 'index': stashTab['i'], 'color': stashTab['colour']} for stashTab in results_stashTabs['tabs']]
         
         context = {
             'characters': characters,
@@ -38,10 +37,9 @@ def characterList(request):
 
 def characterDetail(request):
 
-    if request.is_ajax and request.method == "GET":
+    if request.is_ajax and request.method == 'GET':
 
-
-        if "character_name" in request.GET:
+        if 'character_name' in request.GET:
 
             url = f"https://www.pathofexile.com/character-window/get-items?accountName=R33son&character={request.GET['character_name']}"
 
@@ -88,3 +86,33 @@ def characterDetail(request):
             return JsonResponse({"character_items": items} , status=200)
         else:
             return JsonResponse({"message": "Character does not exists"}, status=400)
+
+def stashTab(request):
+
+    if request.is_ajax and request.method == 'GET':
+        
+        if 'stashtab_index' in request.GET:
+
+            url_stashtab = f'https://www.pathofexile.com/character-window/get-stash-items?league=Standard&realm=pc&accountName=R33son&tabs=0&tabIndex={request.GET["stashtab_index"]}'
+            r_stash = requests.get(url_stashtab, headers=headers, cookies=cookies)
+            results_stash = r_stash.json()
+
+            url_poeNinjaCurrency = f'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
+            r_poeNinja = requests.get(url_poeNinjaCurrency)
+            results_poeNinja = r_poeNinja.json()
+
+            stash_items = [{'league': item['league'], 'frameType': item['frameType'],'stackSize': item['stackSize'], 'typeLine': item['typeLine'], 'baseType': item['baseType'], 'icon': item['icon'], 'name': item['name']} for item in results_stash['items']]
+
+            ninjaCurrency_items = [{'name': item['name'], 'tradeId': item['tradeId']} for item in results_poeNinja['currencyDetails']]
+
+
+            for idx, item in enumerate(stash_items):
+                for ninjaItem in ninjaCurrency_items:
+                    if ninjaItem['name'] == item['typeLine']:
+                       stash_items[idx]['tradeId'] = ninjaItem['tradeId']
+
+        
+
+            return JsonResponse({'stash_items': stash_items}, status=200)
+        else:
+            return JsonResponse({'message': 'tab does not exists'}, status=400)
