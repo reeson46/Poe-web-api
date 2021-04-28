@@ -1,10 +1,63 @@
-frameType 0 = normal, incubators, scarabs, helmet enchants,
-frameType 1 = magic
-frameType 2 = rare, base types, beasts
-frameType 3 = uniques, beasts
+frameType 0 = maps(normal) incubators, fragments, scarabs, breach, helmet enchants,
+frameType 1 = maps(magic)
+frameType 2 = maps(rare), base types, beasts(rare)
+frameType 3 = unique items, beasts
 frameType 4 = skill gems, 
-frameType 5 = currency, fossils, resonators, oils, essences
+frameType 5 = currency, fossils, resonators, oils, essences, catalyst
 frameType 6 = divination cards, 
-frameType 7 = 
+frameType 7 = unknown
 frameType 8 = prophecies
 frameType 9 = relics
+
+CurrencyCategories = [
+    'Currency',         5
+    'Fragment'          0
+]
+
+ItemCategories = [
+    'Oil',              5
+    'Incubator',        0
+    'Scarab',           0   
+    'Fossil',           5
+    'Resonator',        5
+    'Essence',          5
+    'DivinationCard',   6
+    'Prophecy',         8
+    'SkillGem',         4
+    'UniqueMap',        3
+    'Map',              0
+    'UniqueJewel',      3
+    'UniqueFlask',      3
+    'UniqueWeapon',     3
+    'UniqueArmour',     3
+    'Watchstone',       3
+    'UniqueAccessory',  3
+    'DeliriumOrb',      5
+    'Beast',            2,3
+    'Vial',
+    'Invitation',
+  ]
+
+Currency_url = f'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
+Fragment_url = f'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Fragment'
+Oils_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Oil'
+Incubators_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Incubator'
+Scarabs_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Scarab'
+Fossils_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Fossil'
+Resonators_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Resonator'
+Essence_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Essence'
+Divination_url Cards = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=DivinationCard'
+Prophecies_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Prophecy'
+SkillGems_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=SkillGem'
+BaseTypes_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=BaseType'
+UniqueMaps_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueMap'
+Maps_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Map'
+UniqueJewels_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueJewel'
+UniqueFlasks_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueFlask'
+UniqueWeapons_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueWeapon'
+UniqueArmours_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueArmour'
+UniqueAccessories_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=UniqueAccessory'
+Beasts_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Beast'
+Invitations_utl = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Invitation'
+DeliriumOrb_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=DeliriumOrb'
+Watchstone_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Watchstone'

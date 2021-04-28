@@ -131,17 +131,28 @@ $(document).ready(function () {
       },
 
       success: function (response){
-        console.log(response['stash_items']);
+
+        $('#stashContent').empty();
+
         var stash_items = response['stash_items'];
         
         stash_items.forEach((item) => {
 
+          ninjaUrl_btn = ''
+          if (item.ninjaUrl){
+            ninjaUrl_btn= '<a href="' + item.ninjaUrl + '"><button class="poeNinjaBtn">Poe Ninja</button></a>';
+          }
+
           $('#stashContent').append($('<div/>', {class: 'item'})
-                              .append($('<div/>', {class:'icon'})
-                                .append($('img', {src: item.icon})))
+                              .append($('<div/>', {class: 'icon'})
+                                .append($('<img>', {src: item.icon, alt: ''})))
                               .append($('<div/>', {class: 'name'})
-                                .append($('<h2/>', {text: item.name})))
-                              .append($('<div/>', {class: 'pn-link'}).append($('<a/>'))))
+                                .append($('<h2/>', {text: item.typeLine})))
+                              .append($('<div/>', {class: 'pn-link'})
+                                .append(ninjaUrl_btn))
+                              .append($('<div/>', {class: 'quantity'})
+                                .append($('<h2/>', {text: item.quantity})))
+                                )
         });
       },
 

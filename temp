@@ -126,3 +126,21 @@
                   .append($("<p/>", { class:"rarity" + character_items[item].rarity + " m-0", text: character_items[item].typeLine}))
                 )
               )
+
+<div class="item">
+
+    <div class="icon">
+         <img src="" alt="">
+    </div>
+
+    <div class="name">
+        <h2></h2>
+    </div>
+
+    <div class="pn-link">
+        <a href="https://poe.ninja/"><button class="poeNinjaBtn">PN</button></a>
+    </div>
+
+    <div class="quantity">Quantity</div>
+     
+</div>
