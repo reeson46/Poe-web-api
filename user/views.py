@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .forms import SelectCharacter
 from django.views.generic import View
+from .forms import SelectCharacter
 from urllib.parse import (parse_qs, urlparse)
+from collections import Counter
 from pprint import pprint
 import requests
 import json
@@ -38,6 +39,7 @@ def amendSentence(string):
     return(newstring)
 
 def getAllData(request):
+    
     Currency_url = f'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
     Fragment_url = f'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Fragment'
     Oils_url = f'https://poe.ninja/api/data/itemoverview?league=Standard&type=Oil'
@@ -74,7 +76,6 @@ def getAllData(request):
         DivinationCards_url,
         Prophecies_url,
         SkillGems_url,
-        BaseTypes_url,
         UniqueMaps_url,
         Maps_url,
         UniqueJewels_url,
@@ -93,24 +94,42 @@ def getAllData(request):
     
     for idx, url in enumerate(currencyUrl_list):
         qs = urlparse(url)
-        ninjaType = amendSentence(parse_qs(qs.query)['type'][0])
+
+        if parse_qs(qs.query)['type'][0] != 'Currency':
+            ninjaType = amendSentence(parse_qs(qs.query)['type'][0])+'s'
+        else:
+            ninjaType = amendSentence(parse_qs(qs.query)['type'][0])
+
    
         r = requests.get(url)
         result = r.json()
         
-        items = [{'name': item['currencyTypeName'], 'detailsId': item['detailsId'], 'ninjaType': ninjaType} for item in result['lines']]
+        items = [{'baseType': item['currencyTypeName'], 'detailsId': item['detailsId'], 'ninjaType': ninjaType} for item in result['lines']]
 
         poeNinjaData.extend(items)
 
+
     for url in itemsUrl_list:
         qs = urlparse(url)
-        ninjaType = amendSentence(parse_qs(qs.query)['type'][0])
+        ninjaType = amendSentence(parse_qs(qs.query)['type'][0])+'s'
 
         r = requests.get(url)
         result = r.json()
 
-        items = [{'name': item['name'], 'detailsId': item['detailsId'], 'ninjaType': ninjaType} for item in result['lines']]
+        items = []
+        
+        for item in result['lines']:
+            name = ''
+            if item['name'] != '':
+                name = item['name']
+            else:
+                name = item['baseType']
 
+            items.append({
+                'baseType': name,
+                'detailsId': item['detailsId'], 
+                'ninjaType': ninjaType})
+                
         poeNinjaData.extend(items)
 
     with open('data.json', 'w') as jsonfile:
@@ -205,20 +224,47 @@ def stashTab(request):
         if 'stashtab_index' in request.GET:
 
             
-            url_stashtab = f'https://www.pathofexile.com/character-window/get-stash-items?league=Standard&realm=pc&accountName=R33son&tabs=0&tabIndex={request.GET["stashtab_index"]}'
-            r_stash = requests.get(url_stashtab, headers=headers, cookies=cookies)
-            results_stash = r_stash.json()
+            url = f'https://www.pathofexile.com/character-window/get-stash-items?league=Standard&realm=pc&accountName=R33son&tabs=0&tabIndex={request.GET["stashtab_index"]}'
+            r = requests.get(url, headers=headers, cookies=cookies)
+            results = r.json()
 
-            stash_items = [{'league': item['league'], 'frameType': item['frameType'],'quantity': item['stackSize'], 'typeLine': item['typeLine'], 'baseType': item['baseType'], 'icon': item['icon'], 'name': item['name']} for item in results_stash['items']]
+            c = Counter()
 
+            stash_items = []
+
+            for item in results['items']:
+                stackSize = None
+                if 'stackSize' not in item:
+                    c[item['typeLine']] += 1
+                    stackSize = c[item['typeLine']]
+                else:
+                    stackSize = item['stackSize']
+
+                name = ''
+                if item['name'] != '':
+                    name = item['name']
+                else:
+                    name = item['baseType']
+
+                stash_items.append({
+                    'league': item['league'], 
+                    'frameType': item['frameType'],
+                    'quantity': stackSize, 
+                    'typeLine': item['typeLine'], 
+                    'baseType': name, 
+                    'icon': item['icon'], 
+                    'name': item['name']})
+
+            
             
             with open('data.json') as jsonfile:
                 ninjaData = json.load(jsonfile)
 
                 for idx, item in enumerate(stash_items):
                     for ninjaItem in ninjaData:
-                        if ninjaItem['name'] == item['typeLine']:
+                        if ninjaItem['baseType'] == item['baseType']:
                             stash_items[idx]['ninjaUrl'] = poeNinjaCurrency_baseUrl + item['league'].lower() + '/' + ninjaItem['ninjaType'] + '/' + ninjaItem['detailsId'] 
+                
 
             return JsonResponse({'stash_items': stash_items}, status=200)
         else:

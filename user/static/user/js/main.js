@@ -118,6 +118,10 @@ $(document).ready(function () {
   }); 
 
   $('.stashbtn').click(function () {
+
+    $('.stashbtn').removeClass('selectedTab'); // Remove 'filter' CSS Class from all windows
+    
+    $(this).addClass('selectedTab');
     
     $.ajax({
       type: 'GET',
