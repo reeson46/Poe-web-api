@@ -37,16 +37,17 @@ $(document).ready(function () {
         var character_items = response['character_items'];
 
         $('#equippedItemsContainer').empty();
+        $('#itemsToDisplay').empty();
 
         character_items.forEach((item) => {
-
-          var flask = "";
+          
+          flask = "";
           if (item.flask != "") {
             flask = item.flask;
           }
 
-          var placement = "";
-          if (item.type == "Weapon" || item.type == "Offhand") {
+          placement = "";
+          if (item.inventoryId == "Weapon" || item.inventoryId == "Offhand") {
             if (item.height == 3) {
               placement = "placement";
             } 
@@ -60,6 +61,13 @@ $(document).ready(function () {
             item.fracturedMods.forEach((fractured) => {
               fracturedMods += '<p class="fracturedMod textMod">' + fractured + '</p>';
             });
+          }
+
+          utilityMods = '';
+          if(item.utilityMods){
+            item.utilityMods.forEach((utility) => {
+              utilityMods += '<p class="affixMod textMod">' + utility + '</p>';    
+            }); 
           }
 
           implicitMods = "";
@@ -88,23 +96,49 @@ $(document).ready(function () {
             corrupted = '<p class="corrupted textMod">Corrupted</p>';
           }
 
-          $('#equippedItemsContainer').append($("<div/>", {class: "itemContainer " + item.type + flask + " tooltip"})
-                                        .append($("<div/>", { class: "iconContainer " + placement })
-                                          .append($("<div/>", { class: "icon" })
-                                            .append($("<img>", { src: item.icon }))))
-                                            
-                                        .append($("<span/>", { class: "tooltipText" }) // Tooltip span
-                                          .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
-                                            .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
-                                            .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
-                                          .append($("<div/>", {class: "itemMod"})
-                                            .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
-                                            .append(fracturedMods)
-                                            .append(implicitMods)
-                                            .append(explicitMods)
-                                            .append(craftedMods)
-                                            .append(corrupted))) 
-                                            )
+          if(item.inventoryId != 'MainInventory'){
+
+            $('#equippedItemsContainer').append($("<div/>", {class: "itemContainer " + item.inventoryId + flask + " tooltip"})
+                                          .append($("<div/>", { class: "iconContainer " + placement })
+                                            .append($("<div/>", { class: "icon" })
+                                              .append($("<img>", { src: item.icon }))))
+                                              
+                                          .append($("<span/>", { class: "tooltipText" }) // Tooltip span
+                                            .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
+                                              .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
+                                              .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
+                                            .append($("<div/>", {class: "itemMod"})
+                                              .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
+                                              .append(fracturedMods)
+                                              .append(utilityMods)
+                                              .append(implicitMods)
+                                              .append(explicitMods)
+                                              .append(craftedMods)
+                                              .append(corrupted))) 
+                                              )
+          }else{         
+            $('#itemsToDisplay').append($('<div/>', {class: 'inventoryItem tooltip', style: 'top: calc('+ item.y + ' * var(--inventoryItemPosY)); left: calc(' + item.x + ' * var(--inventoryItemPosX));'})
+                                  .append($("<div/>", { class: "iconContainer " + placement })
+                                    .append($('<div/>', {class : 'icon'})
+                                      .append($('<img>', {src: item.icon}))))
+                                  
+                                  .append($("<span/>", { class: "tooltipText" }) // Tooltip span
+                                  .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
+                                    .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
+                                    .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
+                                  .append($("<div/>", {class: "itemMod"})
+                                    .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
+                                    .append(fracturedMods)
+                                    .append(utilityMods)
+                                    .append(implicitMods)
+                                    .append(explicitMods)
+                                    .append(craftedMods)
+                                    .append(corrupted))) 
+                                    )
+   
+          }
+         
+
                                       
                                       
         });
@@ -156,7 +190,7 @@ $(document).ready(function () {
                                 .append(ninjaUrl_btn))
                               .append($('<div/>', {class: 'quantity'})
                                 .append($('<h2/>', {text: item.quantity})))
-                                )
+                                );
         });
       },
 

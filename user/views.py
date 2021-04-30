@@ -176,9 +176,10 @@ def characterDetail(request):
             results = r.json()
 
             items = []
-            for item in results['items']:
-                if item['inventoryId'] != 'MainInventory' and item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
+            inventory = []
 
+            for item in results['items']:
+                if item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
                     
                     if item['inventoryId'] == 'Flask':
                         flask_id = str(item['x']+1)
@@ -186,6 +187,7 @@ def characterDetail(request):
                         flask_id = ''
 
                     fracturedMods = item.get('fracturedMods')
+                    utilityMods = item.get('utilityMods')
                     implicitMods = item.get('implicitMods')
                     explicitMods = item.get('explicitMods')
                     craftedMods = item.get('craftedMods')
@@ -198,9 +200,10 @@ def characterDetail(request):
                     items.append({
                             'typeLine': item['typeLine'], 
                             'icon': item['icon'], 
-                            'type': item['inventoryId'],
+                            'inventoryId': item['inventoryId'],
                             'flask': flask_id,
                             'fracturedMods': fracturedMods,
+                            'utilityMods': utilityMods,
                             'implicitMods': implicitMods,
                             'explicitMods': explicitMods,
                             'craftedMods': craftedMods,
@@ -208,10 +211,12 @@ def characterDetail(request):
                             'corrupted': corrupted,
                             'name': name,
                             'rarity': rarity,
-                            'height': height
+                            'height': height,
+                            'x':item['x'],
+                            'y': item['y']
                         })
-
-            return JsonResponse({"character_items": items} , status=200)
+                
+            return JsonResponse({"character_items": items, 'gridCells': []} , status=200)
         else:
             return JsonResponse({"message": "Character does not exists"}, status=400)
 

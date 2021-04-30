@@ -47,7 +47,22 @@
         </div>
     </div>
 
+    <div class="mainInvetoryContainer window-bg">
+        <h2 class="title m-0">INVENTORY</h2>
+        <div class="inner ic">
+            <div class="inventoryItems">
+                <div class="grid"> <!--ONLY FOR DISPLAYING GRID LINES-->
+                    {% for i in "x"|ljust:"60" %}
+                        <div class="gridLines">{{x}}</div>
+                    {% endfor %}
+                </div>
+                <div class="itemsToDisplay" id="itemsToDisplay"></div>
+            </div>
+        </div>
     
+    
+    </div>
+
 
     <div class="stashtabContainer window-bg">
         <h2 class="title m-0">STASH TABS</h2>

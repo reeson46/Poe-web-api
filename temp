@@ -144,3 +144,7 @@
     <div class="quantity">Quantity</div>
      
 </div>
+
+.append($('<div/>', {class: 'iconContainer tooltip'})
+                                    .append($('<div/>', {class : 'icon'})
+                                      .append($('<img>', {src: item.icon})))))
