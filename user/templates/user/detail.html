@@ -69,7 +69,7 @@
         <div class="inner ic">
             <div class="scrollbar">
                 {% for stashTab in stashTabs  %}
-                    <button class="stashbtn" value="{{ stashTab.index }}" style="background-color: rgb({{ stashTab.color.r }} {{ stashTab.color.g }} {{ stashTab.color.b }} /40%); border: rgb({{ stashTab.color.r|div:0.8 }}, {{ stashTab.color.g|div:0.8 }}, {{ stashTab.color.b|div:0.8 }}) 2px solid;">{{stashTab.name}}</button>
+                    <button class="stashbtn" value="{{ stashTab.index }}" style="background-color: rgb({{ stashTab.color.r }} {{ stashTab.color.g }} {{ stashTab.color.b }} /50%); border: rgb({{ stashTab.color.r|div:0.8 }}, {{ stashTab.color.g|div:0.8 }}, {{ stashTab.color.b|div:0.8 }}) 2px solid;">{{stashTab.name}}</button>
                     <div id="{{ stashTab.name }}" class="testcontainer stashTab" style="display:none"></div>  
                 {% endfor %}
             </div>

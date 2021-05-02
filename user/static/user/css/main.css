@@ -261,7 +261,7 @@
 }
 
 .itemMod{
-    white-space: nowrap;
+    white-space: pre;
     padding: 0px 10px;
 }
 
@@ -297,20 +297,62 @@
     top: -6px;
 }
 
-.itemName .rarity0{
+.regionColor4{
+    background-image: linear-gradient(rgb(30, 61, 52),rgb(40, 77, 65));
+    border: rgb(92, 172, 148) var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.regionColor5{
+    background-image: linear-gradient(rgb(70, 63, 45), rgb(88, 80, 58));
+    border: rgb(102, 95, 73) var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+.regionColor6{
+    background-image: linear-gradient(rgb(70, 63, 45), rgb(88, 80, 58));
+    border: rgb(173, 164, 138) var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+
+.regionColor7{
+    background-image: linear-gradient(rgb(8, 51, 14), rgb(16, 75, 24));
+    border: rgb(40, 94, 46) var(--borderSize) solid;
+    position: relative;
+    top: -6px;
+}
+.itemName .frameType0{
     color: rgb(190 189 198);
 }
 
-.itemName .rarity1{
-    color: rgba(190, 189, 255, 0.911);
+.itemName .frameType1{
+    color: rgb(190, 189, 255);
 }
 
-.itemName .rarity2{
+.itemName .frameType2{
     color: rgb(255, 251, 27);
 }
 
-.itemName .rarity3{
-    color: rgba(255, 96, 5, 0.822);
+.itemName .frameType3{
+    color: rgb(255, 97, 5);
+}
+
+.itemName .frameType4{
+    color: rgb(92, 172, 148);
+}
+
+.itemName .frameType5{
+    color: rgb(173, 164, 138);
+}
+
+.itemName .frameType6{
+    color: rgb(173, 164, 138);
+}
+
+.itemName .frameType7{
+    color: rgb(0, 255, 0);
 }
 
 .enchantMod,
@@ -320,6 +362,10 @@
 
 .affixMod{
     color: rgb(123 123 255);
+}
+
+.corrupted{
+    color: rgb(207, 0, 0);
 }
 
 /* STASH TABS */
@@ -422,8 +468,9 @@
 
 .stashContent .item > div > h2{
     margin: 0;
-    padding: 5px 7px;
+    padding: 10px 7px;
     white-space: nowrap;
+    font-size: 1.1rem;
 }
 
 .stashContent .item > div > img {
@@ -714,14 +761,26 @@
     border: none;
 }
 
-.inventoryItem .iconContainer .icon > img:hover{
-    filter: brightness(150%);
+.inventoryItem .iconContainer .icon > img{
+    background-color: rgb(30, 32, 68, 0.4);
 }
 
-.inventoryItems .itemsToDisplay{
-    
+.inventoryItem .iconContainer .icon > img:hover{
+    background-color: rgba(106, 111, 196, 0.4);
+}
+
+.inventoryItems .itemsToDisplay{   
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
+}
+
+.stackSize{
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: -1px;
+    left: 4px;
 }

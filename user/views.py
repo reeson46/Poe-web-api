@@ -176,7 +176,6 @@ def characterDetail(request):
             results = r.json()
 
             items = []
-            inventory = []
 
             for item in results['items']:
                 if item['inventoryId'] !='Offhand2'and item['inventoryId'] != 'Weapon2':
@@ -185,6 +184,9 @@ def characterDetail(request):
                         flask_id = str(item['x']+1)
                     else:
                         flask_id = ''
+                    
+                    if item['inventoryId'] == 'MainInventory':
+                        pprint(item)
 
                     fracturedMods = item.get('fracturedMods')
                     utilityMods = item.get('utilityMods')
@@ -193,9 +195,9 @@ def characterDetail(request):
                     craftedMods = item.get('craftedMods')
                     enchantMods = item.get('enchantMods')
                     corrupted = item.get('corrupted')
-                    rarity = item.get('frameType')
                     name = item.get('name')
                     height = item.get('h')
+                    stackSize = item.get('stackSize')
                 
                     items.append({
                             'typeLine': item['typeLine'], 
@@ -210,10 +212,11 @@ def characterDetail(request):
                             'enchantMods': enchantMods,
                             'corrupted': corrupted,
                             'name': name,
-                            'rarity': rarity,
+                            'frameType': item['frameType'],
                             'height': height,
                             'x':item['x'],
-                            'y': item['y']
+                            'y': item['y'],
+                            'stackSize': stackSize
                         })
                 
             return JsonResponse({"character_items": items, 'gridCells': []} , status=200)

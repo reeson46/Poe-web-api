@@ -104,9 +104,9 @@ $(document).ready(function () {
                                               .append($("<img>", { src: item.icon }))))
                                               
                                           .append($("<span/>", { class: "tooltipText" }) // Tooltip span
-                                            .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
-                                              .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
-                                              .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
+                                            .append($("<div/>", {class:"itemName regionColor" + item.frameType + " md",}) 
+                                              .append($("<p/>", {class:"frameType" + item.frameType + " m-0", text: item.name})) 
+                                              .append($("<p/>", { class:"frameType" + item.frameType + " m-0", text: item.typeLine})))
                                             .append($("<div/>", {class: "itemMod"})
                                               .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
                                               .append(fracturedMods)
@@ -120,12 +120,13 @@ $(document).ready(function () {
             $('#itemsToDisplay').append($('<div/>', {class: 'inventoryItem tooltip', style: 'top: calc('+ item.y + ' * var(--inventoryItemPosY)); left: calc(' + item.x + ' * var(--inventoryItemPosX));'})
                                   .append($("<div/>", { class: "iconContainer " + placement })
                                     .append($('<div/>', {class : 'icon'})
-                                      .append($('<img>', {src: item.icon}))))
+                                      .append($('<img>', {src: item.icon}))
+                                      .append($('<span/>', {class: 'stackSize', text: item.stackSize}))))
                                   
                                   .append($("<span/>", { class: "tooltipText" }) // Tooltip span
-                                  .append($("<div/>", {class:"itemName regionColor" + item.rarity + " md",}) 
-                                    .append($("<p/>", {class:"rarity" + item.rarity + " m-0", text: item.name})) 
-                                    .append($("<p/>", { class:"rarity" + item.rarity + " m-0", text: item.typeLine})))
+                                  .append($("<div/>", {class:"itemName regionColor" + item.frameType + " md",}) 
+                                    .append($("<p/>", {class:"frameType" + item.frameType + " m-0", text: item.name})) 
+                                    .append($("<p/>", { class:"frameType" + item.frameType + " m-0", text: item.typeLine})))
                                   .append($("<div/>", {class: "itemMod"})
                                     .append($("<p/>", {class: "enchantMod textMod", text: item.enchantMods}))
                                     .append(fracturedMods)
